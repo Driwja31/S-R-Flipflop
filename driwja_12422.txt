@@ -1,0 +1,86 @@
+# Name: Driwja gami
+# Branch:BTech(CE)
+# IARNO: 12422
+
+'''S-R flip flop implementation using gates 
+I have implemeted this table using gates ... 
+S |	R |	Q (current state) | Q' (next state)
+-----------------------------------------------------
+0 |     0 |	Previous state    | Previous state
+0 |     1 |	0	         |  1
+1 |	0 |	1	         |  0
+1 |	1 |	Not allowed	 |  Not allowed'''
+
+#Defining the necessary  gates
+def not_gate(a):
+    return not a
+
+def and_gate(a, b):
+    return a and b
+
+def or_gate(a, b):
+    return a or b
+
+# Define SR flip-flop function using logic gates
+def sr_flipflop(s, r):
+    not_s = not_gate(s)
+    not_r = not_gate(r)
+    q = False
+    q_bar = False
+
+    nand1 = and_gate(s, not_gate(q_bar))
+    nand2 = and_gate(r, not_gate(q))
+   # Check Set condition
+    if nand1 and not nand2:
+        q = True
+        q_bar = False
+        print("S-R Flip-Flop:")
+        print("Input S: ", s)
+        print("Input R: ", r)
+        print("Output Q(current state): ", q)
+        print("Output Q_bar(next state): ", q_bar)
+        print("State: Set condition")
+        
+    # Check Reset condition
+    elif not nand1 and nand2:
+        q = False
+        q_bar = True
+        print("S-R Flip-Flop:")
+        print("Input S: ", s)
+        print("Input R: ", r)
+        print("Output Q(current state): ", q)
+        print("Output Q_bar(next state): ", q_bar)
+        print("State: Reset condition")
+    
+    # Check Invalid condition
+    elif nand1 and nand2:
+        q = False
+        q_bar = False
+        print("S-R Flip-Flop:")
+        print("Input S: ", s)
+        print("Input R: ", r)
+        print("Output Q(current state): ", q)
+        print("Output Q_bar(next state): ", q_bar)
+        print("State: Invalid input")
+        
+    #Check Hold condition
+    else:
+        print("S-R Flip-Flop:")
+        print("Input S: ", s)
+        print("Input R: ", r)
+        print("Output Q(current state): ", q)
+        print("Output Q_bar(next state): ", q_bar)
+        print("State: Hold condition")
+
+    return q, q_bar
+
+#user to enter values for the S and R inputs
+s = input("Enter the value of S (0 or 1): ")
+r = input("Enter the value of R (0 or 1): ")
+
+# Convert the input values to booleans
+s = bool(int(s))
+r = bool(int(r))
+
+# Evaluate the SR flip-flop with the input values
+q, q_bar = sr_flipflop(s, r)
