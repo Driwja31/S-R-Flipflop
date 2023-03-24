@@ -3,7 +3,7 @@
 # IARNO: 12422
 
 '''S-R flip flop implementation using gates 
-I have implemeted this table using gates ... 
+I have implemented this table using gates ... 
 S |	R |	Q (current state) | Q' (next state)
 -----------------------------------------------------
 0 |     0 |	Previous state    | Previous state
